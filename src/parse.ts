@@ -1,6 +1,7 @@
 import {Message} from 'discord.js';
 import {v4 as uuidv4} from 'uuid';
 import * as commands from './commands';
+import {filter} from './wholesome';
 
 export default async function parse(message: Message) {
 	try {
@@ -9,6 +10,8 @@ export default async function parse(message: Message) {
 				await parseCMD(message);
 			} else if (message.channel.topic.includes('github')) {
 				await message.channel.send('Sorry, this isn\'t implemented yet.');
+			} else if (message.channel.topic.includes('wholesome')) {
+				await filter(message);
 			} else {
 				await message.channel.send('I\'m not sure what this channel is for.');
 			}
