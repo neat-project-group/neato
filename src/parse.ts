@@ -4,7 +4,7 @@ import * as commands from './commands';
 
 export default async function parse(message: Message) {
 	try {
-		if (message.channel.type === 'text' && message.channel.topic.includes('neat-commands')) {
+		if (message.channel.type === 'text' && message.channel.topic.includes('neato')) {
 			const argv = message.content.split(' ');
 			const cmd = argv[0];
 			const argStrings = argv.slice(1);

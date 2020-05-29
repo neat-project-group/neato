@@ -4,7 +4,7 @@ services:
   db:
     image: mongo
     volumes:
-      - neat-code-volume:/data/db
+      - neato-volume:/data/db
     environment:
       MONGO_INITDB_DATABASE: neat
   bot:
@@ -19,6 +19,6 @@ services:
       - 1.1.1.1
       - 1.0.0.1
 volumes:
-  neat-code-volume:
+  neato-volume:
 networks:
   default:
