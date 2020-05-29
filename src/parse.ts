@@ -12,6 +12,8 @@ export default async function parse(message: Message) {
 				await message.channel.send('Sorry, this isn\'t implemented yet.');
 			} else if (message.channel.topic.includes('wholesome')) {
 				await filter(message);
+			} else if (message.channel.topic.includes('null')) {
+				await message.delete();
 			} else {
 				await message.channel.send('I\'m not sure what this channel is for.');
 			}
