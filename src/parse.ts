@@ -5,26 +5,12 @@ import * as commands from './commands';
 export default async function parse(message: Message) {
 	try {
 		if (message.channel.type === 'text' && message.channel.topic.includes('neato')) {
-			const argv = message.content.split(' ');
-			const cmd = argv[0];
-			const argStrings = argv.slice(1);
-			const args = {};
-			for (const arg of argStrings) {
-				if (arg.includes('=') && !arg.includes('_')) {
-					const pair = arg.split('=');
-					args[pair[0]] = pair[1];
-				} else {
-					await message.channel.send(`Sorry, ${message.author.tag}, your command's syntax is invalid.`);
-					return;
-				}
-			}
-
-			if (typeof commands[cmd] === 'function') {
-				const result = await commands[cmd](args, message);
-				await message.channel.send(result);
+			if (message.channel.topic.includes('cmd')) {
+				await parseCMD(message);
+			} else if (message.channel.topic.includes('github')) {
+				await message.channel.send('Sorry, this isn\'t implemented yet.');
 			} else {
-				await message.channel.send(`Sorry, ${message.author.tag}, that command doesn't exist.`);
-				return;
+				await message.channel.send('I\'m not sure what this channel is for.');
 			}
 		}
 	} catch (error) {
@@ -34,3 +20,27 @@ export default async function parse(message: Message) {
 		console.error(error);
 	}
 }
+
+async function parseCMD(message: Message) {
+	const argv = message.content.split(' ');
+	const cmd = argv[0];
+	const argStrings = argv.slice(1);
+	const args = {};
+	for (const arg of argStrings) {
+		if (arg.includes('=') && !arg.includes('_')) {
+			const pair = arg.split('=');
+			args[pair[0]] = pair[1];
+		} else {
+			await message.channel.send(`Sorry, ${message.author.tag}, your command's syntax is invalid.`);
+			return;
+		}
+	}
+
+	if (typeof commands[cmd] === 'function') {
+		const result = await commands[cmd](args, message);
+		await message.channel.send(result);
+	} else {
+		await message.channel.send(`Sorry, ${message.author.tag}, that command doesn't exist.`);
+	}
+}
+

@@ -3,7 +3,7 @@ WORKDIR /build
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run-script prepare
+RUN npm run-script build
 
 FROM node:lts
 WORKDIR /app

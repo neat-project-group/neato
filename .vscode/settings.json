@@ -1,8 +1,9 @@
 {
 	"cSpell.words": [
-		"readonly"
+		"neato"
 	],
 	"cSpell.ignoreWords": [
+		"readonly",
 		"initdb",
 		"uuidv"
 	]

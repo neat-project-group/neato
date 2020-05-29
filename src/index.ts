@@ -12,7 +12,7 @@ const ready = new Promise(resolve => client.once('ready', resolve));
 	spinner.setSpinnerString(3);
 	spinner.setSpinnerTitle('%s Loading secret...');
 	spinner.start();
-	const secret = fs.readFileSync('./token', 'utf8');
+	const secret = fs.readFileSync('./discord-token', 'utf8');
 	spinner.setSpinnerString(10);
 	spinner.setSpinnerTitle('%s Connecting to database...');
 	await db.init();
@@ -23,8 +23,8 @@ const ready = new Promise(resolve => client.once('ready', resolve));
 	spinner.stop(true);
 	console.log('Done!');
 	client.on('message', async message => {
+		console.log(`${message.author.tag}: ${message.content}`);
 		if (!message.author.bot) {
-			console.log(`${message.author.tag}: ${message.content}`);
 			await parse(message);
 		}
 	});

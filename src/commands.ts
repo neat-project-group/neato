@@ -15,7 +15,6 @@ export async function addLanguage(args: any, message: Message): Promise<string> 
 			return 'Missing required argument name.';
 		}
 
-		await message.channel.send('Working...');
 		let lang = await Language.findOne({canonicalName: args.name}).exec();
 		if (!lang) {
 			lang = new Language({

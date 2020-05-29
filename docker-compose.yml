@@ -10,7 +10,7 @@ services:
   bot:
     build: .
     volumes:
-      - ./token:/app/token
+      - ./discord-token:/app/discord-token
     depends_on:
       - db
     links:
