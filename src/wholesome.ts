@@ -1,8 +1,10 @@
 import {Message} from 'discord.js';
-import Sentiment from 'sentiment';
+// Import Sentiment from 'sentiment';
+import sentiment from 'wink-sentiment';
 export async function filter(message: Message) {
-	const sent = new Sentiment();
-	const result = sent.analyze(message.content).comparative;
+	// Const sent = new Sentiment();
+	// const result = sent.analyze(message.content).comparative;
+	const result = sentiment(message.content).score;
 	console.log(result);
 	if (result < 0) {
 		await message.delete({reason: 'not wholesome'});

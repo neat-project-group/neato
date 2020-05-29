@@ -20,8 +20,8 @@
 		"commander": "^5.1.0",
 		"discord.js": "^12.2.0",
 		"mongoose": "^5.9.16",
-		"sentiment": "^5.0.2",
-		"uuid": "^8.1.0"
+		"uuid": "^8.1.0",
+		"wink-sentiment": "^5.0.2"
 	},
 	"devDependencies": {
 		"@types/natural": "^0.6.3",
