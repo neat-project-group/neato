@@ -6,13 +6,13 @@ import {filter} from './wholesome';
 export default async function parse(message: Message) {
 	try {
 		if (message.channel.type === 'text' && message.channel.topic.includes('neato')) {
-			if (message.channel.topic.includes('cmd')) {
+			if (/\[.*neato cmd.*]/.test(message.channel.topic)) {
 				await parseCMD(message);
-			} else if (message.channel.topic.includes('github')) {
+			} else if (/\[.*neato github.*]/.test(message.channel.topic)) {
 				await message.channel.send('Sorry, this isn\'t implemented yet.');
-			} else if (message.channel.topic.includes('wholesome')) {
+			} else if (/\[.*neato wholesome.*]/.test(message.channel.topic)) {
 				await filter(message);
-			} else if (message.channel.topic.includes('null')) {
+			} else if (/\[.*neato null.*]/.test(message.channel.topic)) {
 				await message.delete();
 			} else {
 				await message.channel.send('I\'m not sure what this channel is for.');
