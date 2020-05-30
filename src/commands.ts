@@ -10,7 +10,7 @@ export async function help(_args: any, _message: Message) {
 }
 
 export async function addLanguage(args: any, message: Message): Promise<string> {
-	if (message.member.hasPermission('ADMINISTRATOR')) {
+	if (message.member.hasPermission('MANAGE_CHANNELS')) {
 		if (!args.name) {
 			return 'Missing required argument name.';
 		}
