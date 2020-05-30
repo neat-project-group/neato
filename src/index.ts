@@ -12,7 +12,7 @@ const ready = new Promise(resolve => client.once('ready', resolve));
 	spinner.setSpinnerString(3);
 	spinner.setSpinnerTitle('%s Loading secret...');
 	spinner.start();
-	const secret = fs.readFileSync('./discord-token', 'utf8');
+	const secret = fs.readFileSync('./discord-token', 'utf8').trim();
 	spinner.setSpinnerString(10);
 	spinner.setSpinnerTitle('%s Connecting to database...');
 	await db.init();
