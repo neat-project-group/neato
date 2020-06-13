@@ -5,7 +5,7 @@ import {filter} from './wholesome';
 
 export default async function parse(message: Message) {
 	try {
-		if (message.channel.type === 'text' && message.channel.topic.includes('neato')) {
+		if (message.channel.type === 'text' && (message.channel.topic || '').includes('neato')) {
 			if (/\[.*neato cmd.*]/.test(message.channel.topic)) {
 				await parseCMD(message);
 			} else if (/\[.*neato github.*]/.test(message.channel.topic)) {
